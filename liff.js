@@ -6,26 +6,23 @@ window.onload = function (e) {
         initializeApp(data);
     });
 
-    // LIFF アプリを閉じる
-    // https://developers.line.me/ja/reference/liff/#liffclosewindow()
-    document.getElementById('closewindowbutton').addEventListener('click', function () {
-        liff.closeWindow();
-    });
+    const listitem = document.getElementsByClassName('list-item')
 
-    // ウィンドウを開く
-    // https://developers.line.me/ja/reference/liff/#liffopenwindow()
-    document.getElementById('openwindowbutton').addEventListener('click', function () {
-        liff.openWindow({
-            url: 'https://line.me'
-        });
-    });
+    for(let i = 0; i < listitem.length; i++){
 
-    document.getElementById('openwindowexternalbutton').addEventListener('click', function () {
-        liff.openWindow({
-            url: 'https://line.me',
-            external: true
+      listitem[i].addEventListener('click', function (e) {
+        liff.sendMessages([{
+            type: 'text',
+            text: e.target.textContent
+        }]).then(function () {
+            window.alert("送信完了");
+        }).catch(function (error) {
+            window.alert("Error sending message: " + error);
         });
-    });
+          liff.closeWindow();
+      });
+
+    }
 
     // メッセージの送信
     document.getElementById('sendmessagebutton').addEventListener('click', function () {

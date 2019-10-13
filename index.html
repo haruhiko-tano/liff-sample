@@ -7,10 +7,13 @@
     <title>My First LIFF</title>
 </head>
 <body>
-    <button id="closewindowbutton">LIFF アプリを閉じる</button>
-    <button id="openwindowbutton">ウィンドウを LINE 内で開く</button>
-    <button id="openwindowexternalbutton">ウィンドウを外部ブラウザで開く</button>
-    <button id="sendmessagebutton">メッセージ送信</button>
+    <ul id="list">
+      <li class="list-item">item1</li>
+      <li class="list-item">item2</li>
+      <li class="list-item">item3</li>
+      <li class="list-item">item4</li>
+      <li class="list-item">item5</li>
+    </ul>
     <div id="profileinfo">
         <h2>Profile</h2>
         <div id="profilepicturediv">
@@ -64,5 +67,6 @@
     <!-- LIFF SDK の読み込み -->
     <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
     <script src="liff.js"></script>
+    <link rel="stylesheet" type="text/css" href="index.css">
 </body>
 </html>
