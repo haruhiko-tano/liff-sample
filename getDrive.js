@@ -1,20 +1,20 @@
 window.onload = function (e) {
 
-  liff.init(function (data) {
+  var firebaseConfig = {
+    apiKey: "AIzaSyBojqefOzqaxQTLvQSjVikDWNGeT_F62nY",
+    authDomain: "fleet-line-sample.firebaseapp.com",
+    databaseURL: "https://fleet-line-sample.firebaseio.com",
+    projectId: "fleet-line-sample",
+    storageBucket: "fleet-line-sample.appspot.com",
+    messagingSenderId: "169498183895",
+    appId: "1:169498183895:web:889550fbd1e2d5eae78892",
+    measurementId: "G-Q7WVTE7JE9"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  var db = firebase.firestore();
 
-    var firebaseConfig = {
-      apiKey: "AIzaSyBojqefOzqaxQTLvQSjVikDWNGeT_F62nY",
-      authDomain: "fleet-line-sample.firebaseapp.com",
-      databaseURL: "https://fleet-line-sample.firebaseio.com",
-      projectId: "fleet-line-sample",
-      storageBucket: "fleet-line-sample.appspot.com",
-      messagingSenderId: "169498183895",
-      appId: "1:169498183895:web:889550fbd1e2d5eae78892",
-      measurementId: "G-Q7WVTE7JE9"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    var db = firebase.firestore();
+  liff.init(function (data) {
     getProfile();
   });
 
