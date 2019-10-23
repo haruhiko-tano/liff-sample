@@ -41,7 +41,6 @@ window.onload = function (e) {
         }).catch(function (error) {
             window.alert("Error sending message: " + error);
         });
-      }
 
       var userId = document.getElementById('useridprofilefield').textContent
       db.collection(userId).add({
@@ -54,9 +53,9 @@ window.onload = function (e) {
       .catch((error) => {
         console.log(`追加に失敗しました (${error})`);
       });
-    );
+    });
 
-    }
+  }
 
 function getDrivingRecord(){
   db.collection("users").get().then((query) => {
