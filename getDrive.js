@@ -21,7 +21,6 @@ window.onload = function (e) {
 // プロファイルの取得と表示
 function getProfile(){
 
-    https://developers.line.me/ja/reference/liff/#liffgetprofile()
     liff.getProfile().then(function (profile) {
       db.collection(profile.userId).get().then((query) => {
         var buff = [];
