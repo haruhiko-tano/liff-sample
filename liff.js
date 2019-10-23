@@ -36,23 +36,25 @@ window.onload = function (e) {
             packageId: '2',
             stickerId: '144'
         }]).then(function (e) {
-            var userId = document.getElementById('useridprofilefield').textContent
-            db.collection(userId).add({
-              name: e.target.textContent,
-              datetime: new Date()
-            })
-            .then((doc) => {
-              console.log(`追加に成功しました (${doc.id})`);
-              liff.closewindow();
-            })
-            .catch((error) => {
-              console.log(`追加に失敗しました (${error})`);
-            });
             window.alert("送信完了");
+            liff.closewindow();
         }).catch(function (error) {
             window.alert("Error sending message: " + error);
         });
+      }
+
+      var userId = document.getElementById('useridprofilefield').textContent
+      db.collection(userId).add({
+        name: e.target.textContent,
+        datetime: new Date()
+      })
+      .then((doc) => {
+        console.log(`追加に成功しました (${doc.id})`);
+      })
+      .catch((error) => {
+        console.log(`追加に失敗しました (${error})`);
       });
+    );
 
     }
 
