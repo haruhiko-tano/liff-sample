@@ -1,5 +1,7 @@
 window.onload = function (e) {
 
+  liff.init(function (data) {
+
     var firebaseConfig = {
       apiKey: "AIzaSyBojqefOzqaxQTLvQSjVikDWNGeT_F62nY",
       authDomain: "fleet-line-sample.firebaseapp.com",
@@ -14,6 +16,8 @@ window.onload = function (e) {
     firebase.initializeApp(firebaseConfig);
     var db = firebase.firestore();
     getProfile();
+  });
+
 
 
 
