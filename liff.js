@@ -37,7 +37,7 @@ window.onload = function (e) {
             stickerId: '144'
         }]).then(function (e) {
             window.alert("送信完了");
-            liff.closewindow();
+            liff.closeWindow();
         }).catch(function (error) {
             window.alert("Error sending message: " + error);
         });
