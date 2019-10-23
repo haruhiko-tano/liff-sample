@@ -31,12 +31,7 @@ window.onload = function (e) {
         liff.sendMessages([{
             type: 'text',
             text: '乗務記録として「' + e.target.textContent + '」を記録しました。'
-        },{
-            type: 'sticker',
-            packageId: '2',
-            stickerId: '144'
         }]).then(function (e) {
-            window.alert("送信完了");
             liff.closeWindow();
         }).catch(function (error) {
             window.alert("Error sending message: " + error);
