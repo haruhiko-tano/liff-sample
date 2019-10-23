@@ -4,7 +4,24 @@ window.onload = function (e) {
     liff.init(function (data) {
         getProfile();
         initializeApp(data);
+        // Initialize Cloud Firestore through Firebase
+
     });
+
+    var firebaseConfig = {
+      apiKey: "AIzaSyBojqefOzqaxQTLvQSjVikDWNGeT_F62nY",
+      authDomain: "fleet-line-sample.firebaseapp.com",
+      databaseURL: "https://fleet-line-sample.firebaseio.com",
+      projectId: "fleet-line-sample",
+      storageBucket: "fleet-line-sample.appspot.com",
+      messagingSenderId: "169498183895",
+      appId: "1:169498183895:web:889550fbd1e2d5eae78892",
+      measurementId: "G-Q7WVTE7JE9"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    var db = firebase.firestore();
+
 
     const listitem = document.getElementsByClassName('list-item')
 
@@ -13,34 +30,47 @@ window.onload = function (e) {
       listitem[i].addEventListener('click', function (e) {
         liff.sendMessages([{
             type: 'text',
-            text: e.target.textContent
-        }]).then(function () {
+            text: '乗務記録として「' + e.target.textContent + '」を記録しました。'
+        },{
+            type: 'sticker',
+            packageId: '2',
+            stickerId: '144'
+        }]).then(function (e) {
+            var userId = document.getElementById('useridprofilefield').textContent
+            db.collection(userId).add({
+              name: e.target.textContent,
+              datetime: new Date()
+            })
+            .then((doc) => {
+              console.log(`追加に成功しました (${doc.id})`);
+              liff.closewindow();
+            })
+            .catch((error) => {
+              console.log(`追加に失敗しました (${error})`);
+            });
             window.alert("送信完了");
         }).catch(function (error) {
             window.alert("Error sending message: " + error);
         });
-          liff.closeWindow();
       });
 
     }
 
-    // メッセージの送信
-    document.getElementById('sendmessagebutton').addEventListener('click', function () {
-        // https://developers.line.me/ja/reference/liff/#liffsendmessages()
-        liff.sendMessages([{
-            type: 'text',
-            text: "テキストメッセージの送信"
-        }, {
-            type: 'sticker',
-            packageId: '2',
-            stickerId: '144'
-        }]).then(function () {
-            window.alert("送信完了");
-        }).catch(function (error) {
-            window.alert("Error sending message: " + error);
-        });
+function getDrivingRecord(){
+  db.collection("users").get().then((query) => {
+    var buff = [];
+    query.forEach((doc) => {
+      var data = doc.data();
+      buff.push([doc.id, data.name, data.age]);
     });
-};
+    console.log(buff);
+  })
+  .catch((error)=>{
+    console.log(`データの取得に失敗しました (${error})`);
+  });
+
+}
+
 
 // プロファイルの取得と表示
 function getProfile(){
@@ -72,4 +102,5 @@ function initializeApp(data) {
     document.getElementById('utouidfield').textContent = data.context.utouId;
     document.getElementById('roomidfield').textContent = data.context.roomId;
     document.getElementById('groupidfield').textContent = data.context.groupId;
+}
 }

@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My First LIFF</title>
+    <title>乗務記録</title>
 </head>
 <body>
     <ul id="list">
-      <li class="list-item">item1</li>
-      <li class="list-item">item2</li>
-      <li class="list-item">item3</li>
-      <li class="list-item">item4</li>
-      <li class="list-item">item5</li>
+      <li class="list-item">業務開始</li>
+      <li class="list-item">空車走行</li>
+      <li class="list-item">実車走行</li>
+      <li class="list-item">休憩</li>
+      <li class="list-item">業務終了</li>
     </ul>
     <div id="profileinfo">
         <h2>Profile</h2>
@@ -66,6 +66,9 @@
 
     <!-- LIFF SDK の読み込み -->
     <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-firestore.js"></script>
     <script src="liff.js"></script>
     <link rel="stylesheet" type="text/css" href="index.css">
 </body>
