@@ -23,7 +23,7 @@ window.onload = function (e) {
     var db = firebase.firestore();
 
 
-    const listitem = document.getElementsByClassName('list-item')
+    const listitem = document.getElementsByClassName('btn')
 
     for(let i = 0; i < listitem.length; i++){
 
